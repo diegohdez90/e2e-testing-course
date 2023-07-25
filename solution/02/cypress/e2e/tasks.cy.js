@@ -5,5 +5,7 @@ describe('tasks management', () => {
     cy.get('.backdrop').click({
       force: true
     })
+    cy.get('.backdrop').should('not.exist')
+    cy.get('.modal').should('not.exist')
   })
 })
