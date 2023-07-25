@@ -7,5 +7,10 @@ describe('tasks management', () => {
     })
     cy.get('.backdrop').should('not.exist')
     cy.get('.modal').should('not.exist')
+    
+    cy.contains('Add Task').click()
+    cy.contains('Cancel').click();
+    cy.get('.backdrop').should('not.exist')
+    cy.get('.modal').should('not.exist')
   })
 })
