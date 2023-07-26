@@ -25,4 +25,13 @@ describe('tasks management', () => {
     cy.get('ul.task-list').find('li.task:last-child').find('h2').contains('New Task')
     cy.get('ul.task-list').find('li.task:last-child').find('p').contains('Some description')
   })
+
+  it('should validate modal form', () => {
+    cy.visit('http://localhost:5173/');
+    cy.contains('Add Task').click()
+    cy.get('.error-message').should('not.exist')
+    cy.get('#title').type('New Task');
+    cy.get('.modal').contains('Add Task').click();
+    cy.get('.error-message').should('exist').contains('Please provide values for task title, summary and category!')
+  })
 })
