@@ -55,4 +55,25 @@ describe('tasks management', () => {
     cy.get('ul.task-list').find('li.task:last-child').find('h2').contains('New Task')
     cy.get('ul.task-list').find('li.task:last-child').find('p').contains('Some description')
   })
+
+  it('should add multiple tasks', () => {
+    cy.visit('http://localhost:5173/');
+    cy.contains('Add Task').click()
+    cy.get('#title').type('New Task');
+    cy.get('#summary').type('Some description');
+    cy.get('select#category').select('urgent')
+    cy.get('.modal').contains('Add Task').click();
+    cy.get('.backdrop').should('not.exist')
+    cy.get('.modal').should('not.exist')
+    cy.get('ul.task-list').find('li.task:last-child').find('h2').contains('New Task')
+    cy.get('ul.task-list').find('li.task:last-child').find('p').contains('Some description')
+    cy.contains('Add Task').click()
+    cy.get('#title').type('Second Task');
+    cy.get('#summary').type('Some description for second task');
+    cy.get('.modal').contains('Add Task').click();
+    cy.get('.backdrop').should('not.exist')
+    cy.get('.modal').should('not.exist')
+    cy.get('ul.task-list').find('li.task:last-child').find('h2').contains('Second Task')
+    cy.get('ul.task-list').find('li.task:last-child').find('p').contains('Some description for second task')
+  });
 })
