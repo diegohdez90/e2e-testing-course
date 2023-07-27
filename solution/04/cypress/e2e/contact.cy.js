@@ -10,6 +10,10 @@ describe('contact form', () => {
   afterEach(() => {});
   after(() => {});
   it('should submit the form', () => {
+    cy.task('seedDatabase', 'filename.csv')
+      .then(value => {
+        
+      })
     cy.getById('contact-input-message').type('Hello world!');
     cy.getById('contact-input-name').type('John Doe');
     cy.getById('contact-btn-submit').then((el) => {
