@@ -38,8 +38,9 @@ describe('contact form', () => {
       })
     cy.get('[data-cy="contact-btn-submit"][type="submit"]').contains('Send Message');
 
-    cy.get('[data-cy="contact-input-message"]').focus().blur()
-    cy.get('[data-cy="contact-input-message"]')
+    cy.get('[data-cy="contact-input-message"]').as('inpnutMsg')
+    cy.get('@inpnutMsg').focus().blur()
+    cy.get('@inpnutMsg')
       .parent()
       .then(el => {
         expect(el.attr('class')).to.contains('invalid')
