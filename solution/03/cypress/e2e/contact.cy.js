@@ -38,5 +38,23 @@ describe('contact form', () => {
       })
     cy.get('[data-cy="contact-btn-submit"][type="submit"]').contains('Send Message');
 
+    cy.get('[data-cy="contact-input-message"]').focus().blur()
+    cy.get('[data-cy="contact-input-message"]')
+      .parent()
+      .then(el => {
+        expect(el.attr('class')).to.contains('invalid')
+      })
+    cy.get('[data-cy="contact-input-name"]').focus().blur()
+    cy.get('[data-cy="contact-input-name"]')
+      .parent()
+      .then(el => {
+        expect(el.attr('class')).to.contains('invalid')
+      })
+    cy.get('[data-cy="contact-input-email"]').focus().blur()
+    cy.get('[data-cy="contact-input-email"]')
+      .parent()
+      .then(el => {
+        expect(el.attr('class')).to.contains('invalid')
+      })
   });
 })
