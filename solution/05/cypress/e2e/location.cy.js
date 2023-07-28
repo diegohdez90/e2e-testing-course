@@ -18,6 +18,8 @@ describe('share location', () => {
         cy.stub(w.navigator.clipboard, 'writeText')
           .as('saveToClipboard')
           .resolves();
+        cy.spy(w.localStorage, 'setItem').as('setStoreLocation');
+        cy.spy(w.localStorage, 'getItem').as('getStoreLocation');
       });
   });
   it('should fetch the user location', () => {
@@ -40,6 +42,14 @@ describe('share location', () => {
             'have.been.calledWithMatch', 
             new RegExp(`${latitude}.*${longitude}.*${encodeURI('John Doe')}`)
           );
+        cy.get('@setStoreLocation').should(
+          'have.been.calledWithMatch',
+          /John Doe/,
+          new RegExp(`${latitude}.*${longitude}.*${encodeURI('John Doe')}`)
+        );
       });
+    cy.get('@setStoreLocation').should('have.been.called')
+    cy.get('[data-cy="share-loc-btn"]').click()
+    cy.get('@getStoreLocation').should('have.been.called')
   });
 });
