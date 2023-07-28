@@ -51,5 +51,8 @@ describe('share location', () => {
     cy.get('@setStoreLocation').should('have.been.called')
     cy.get('[data-cy="share-loc-btn"]').click()
     cy.get('@getStoreLocation').should('have.been.called')
+    cy.get('[data-cy="info-message"]').should('be.visible');
+    cy.get('[data-cy="info-message"]').should('have.class', 'visible')
+    cy.get('[data-cy="info-message"]').should('not.be.visible');
   });
 });
