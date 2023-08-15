@@ -46,7 +46,6 @@ Cypress.Commands.add('login', () => {
   cy.getCookie('__session').its('value').should('not.be.empty');
 });
 
-
 // the below code snippet is required to handle a React hydration bug that would cause tests to fail
 // it's only a workaround until this React behavior / bug is fixed
 Cypress.on('uncaught:exception', (err) => {
