@@ -14,6 +14,7 @@ describe('Takeaways', () => {
     cy.visit('/takeaways/new');
     cy.get('[data-cy="title"]').click();
     cy.get('[data-cy="title"]').type('TestTitle1');
+    cy.get('[data-cy="body"]').click();
     cy.get('[data-cy="body"]').type('TestBody1');
     cy.get('[data-cy="create-takeaway"]').click();
     cy.wait('@createTakeaway')
